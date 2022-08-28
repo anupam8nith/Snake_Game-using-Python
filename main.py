@@ -69,13 +69,13 @@ def gameloop():
     snk_length = 1
     if os.path.exists("highscore.txt"):
         pass
-    # Check if hiscore file exists
+    # Check if highscore file exists
     else:
         with open("highscore.txt", "w") as f:
             f.write("0")
 
     with open("highscore.txt", "r") as f:
-        hiscore = f.read()
+        highscore = f.read()
 
     food_x = random.randint(20, screen_width / 2)
     food_y = random.randint(20, screen_height / 2)
@@ -86,7 +86,7 @@ def gameloop():
     while not exit_game:
         if game_over:
             with open("highscore.txt", "w") as f:
-                f.write(str(hiscore))
+                f.write(str(highscore))
             gameWindow.fill(white)
             text_screen("Game Over! Press Enter To Continue", red, 100, 250)
 
@@ -132,12 +132,12 @@ def gameloop():
                 food_x = random.randint(20, screen_width / 2)
                 food_y = random.randint(20, screen_height / 2)
                 snk_length += 5
-                if score > int(hiscore):
-                    hiscore = score
+                if score > int(highscore):
+                    highscore = score
 
             gameWindow.fill(white)
             gameWindow.blit(bgimg, (0, 0))
-            text_screen("Score: " + str(score) + "  highscore: " + str(hiscore), red, 5, 5)
+            text_screen("Score: " + str(score) + "  highscore: " + str(highscore), red, 5, 5)
             pygame.draw.rect(gameWindow, red, [food_x, food_y, snake_size, snake_size])
 
             head = []
